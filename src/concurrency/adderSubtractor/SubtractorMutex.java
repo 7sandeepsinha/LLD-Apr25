@@ -1,13 +1,13 @@
-package concurrency;
+package concurrency.adderSubtractor;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-public class AdderMutex implements Runnable{
+public class SubtractorMutex implements Runnable{
 
     private Count count;
     private ReentrantLock mutex;
 
-    public AdderMutex(Count count, ReentrantLock mutex) {
+    public SubtractorMutex(Count count, ReentrantLock mutex) {
         this.count = count;
         this.mutex = mutex;
     }
@@ -16,7 +16,7 @@ public class AdderMutex implements Runnable{
     public void run() {
         for(int i = 1; i <= 10000; i++) {
             mutex.lock();
-            count.val++;
+            count.val--;
             mutex.unlock();
         }
     }

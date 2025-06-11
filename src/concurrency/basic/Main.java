@@ -1,6 +1,8 @@
-package concurrency;
+package concurrency.basic;
 
-import java.util.concurrent.locks.ReentrantLock;
+import concurrency.adderSubtractor.SubtractorSync;
+import concurrency.adderSubtractor.AdderSync;
+import concurrency.adderSubtractor.Count;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {

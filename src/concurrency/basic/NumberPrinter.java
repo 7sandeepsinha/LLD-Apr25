@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.basic;
 
 public class NumberPrinter implements Runnable{
     private int n;
