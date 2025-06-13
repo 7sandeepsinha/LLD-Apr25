@@ -63,6 +63,25 @@ public class Main {
         Computer.setCpuArch("ARM CPU");
 
         System.out.println(c2.getCpuArch());
+
+        TV tv = new TV();
+        tv.channel();
+        tv.volume();
+
+        SmartTV smartTV = new SmartTV();
+        smartTV.channel();
+        smartTV.volume();
+        smartTV.brightness();
+
+        System.out.println("------------");
+        // old remote new tv || UPCASTING || IMPLICIT CASTING
+        TV tvobj = new SmartTV(); // parent ref || child object --> works fine, with limited capability
+        tvobj.volume();
+        tvobj.channel();
+
+        //new remote old tv || DOWNCASTING || EXPLICIT CASTING
+        SmartTV smartObj = (SmartTV) new TV();
+        smartObj.volume();
     }
 }
 
