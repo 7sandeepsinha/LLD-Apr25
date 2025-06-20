@@ -20,7 +20,7 @@ public class Main {
         List<Student> students = new ArrayList<>();
 
         // ClassName objName = new ClassName();
-        // ---> new ClassName(); -- supported for generics -- NOT RECOMMEDED
+        // ---> new ClassName(); -- supported for generics -- NOT RECOMMENDED -- Raw Data Type
         // ---> new ClassName<>(); -- supported for generics --- RECOMMENDED
 
         // Integer -- int
@@ -38,7 +38,7 @@ public class Main {
         Integer z = y;
         // auto-boxing -> automatically converting wrapper class object to primitive and vice-versa
         /
-         */
+
         Animal animal = new Animal();
         Dog dog = new Dog();
 
@@ -59,6 +59,111 @@ public class Main {
         Printer<Animal> printer = new Printer<>();
         printer.print(animal);
         printer.print(dog);
+
+        List<?> allList = new ArrayList<>(); // wildcard list
+        List<? extends Animal> animalAndChildrenList = new ArrayList<>();
+        List<? super Animal> animalAndParentList = new ArrayList<>();
+        List<Animal> animalList = new ArrayList<>();
+
+        HashMap<Integer, Animal> animalMap = new HashMap<>();
+
+         */
+        // Anonymous class - demo
+        /*
+        StatusNodeValidator statusNodeValidator = new StatusNodeValidator();
+        statusNodeValidator.validate();
+
+        ReviewNodeValidator reviewNodeValidator = new ReviewNodeValidator();
+        reviewNodeValidator.validate();
+
+        Validator statusNodeValidatorAC = new Validator() { // statusNodeValidatorAnonymousClass
+            public boolean validate(){
+                System.out.println("Anonymous class - status node validator");
+                return true;
+            }
+        };
+        statusNodeValidatorAC.validate();
+
+        Validator reviewNodeValidatorAC = new Validator() {
+            public boolean validate(){
+                System.out.println("Anonymous class - review node validator");
+                return true;
+            }
+        };
+        reviewNodeValidatorAC.validate();
+
+        // Anonymous class - Helps to create objects from an interface
+        // definition of methods by giving their implementations
+
+        InterfaceName objName = new InterfaceName() {
+                //implement ALL methods for the interface --- ALL methods are mandatory
+                public void method1(){
+                }
+
+                public void method2(){
+                }
+        };
+         */
+
+        // lambdas
+        // lambas -> shorter code for anonymous class implementation, for FIs
+        // statusNodeValidatorAnonymousClass
+
+        Validator statusNodeValidatorAC = () -> {
+                System.out.println("Anonymous class - status node validator");
+                return true;
+            };
+        statusNodeValidatorAC.validate();
+
+        Validator passValidatorLambda = () -> true;
+        passValidatorLambda.validate();
+
+        Validator statusNodeValidatorLambda = () -> {
+            System.out.println("Anonymous class - status node validator");
+            return true;
+        };
+        statusNodeValidatorAC.validate();
+
+        // 1st option
+        SingleLineValidator singleLineValidator = new SingleLineValidator();
+        singleLineValidator.validate();
+
+        //2nd option
+        Validator singleLineValidatorAC = new Validator() {
+            @Override
+            public boolean validate() {
+                return StaticValidation.validate();
+            }
+        };
+        singleLineValidatorAC.validate();
+
+        //3rd option
+        Validator singleLineValidatorLambda = () -> StaticValidation.validate();
+        singleLineValidatorLambda.validate();
+
+        // task -> print helloworld from a different thread
+        // implemented traditionally using class
+        HelloWorldPrinter hwp = new HelloWorldPrinter();
+        Thread thread = new Thread(hwp);
+        thread.start();
+
+        //implemented using lambda
+        Runnable helloWorldPrinter =  () ->
+                System.out.println("Hello World" + Thread.currentThread().getName());
+        Thread thread1 = new Thread(helloWorldPrinter);
+        thread1.start();
+
+        //shorter
+        Thread t2 = new Thread(
+                () -> System.out.println("Hello World" + Thread.currentThread().getName())
+        );
+        t2.start();
+
+        // int x = 1
+        // int y = 2
+        // add(x,y)
+        // add(1,2)
+
     }
 
     public static void print(Animal animal){
