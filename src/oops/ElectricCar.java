@@ -28,7 +28,13 @@ public class ElectricCar extends Car{
 
     @Override // does nothing, just for better readability and verifies override || adding or removing this wont impact method overriding
     public void startEngine(){
+        super.startEngine(); // call any method from parent you can use super keyword
+        this.chargeBattery(); // call any method present inside the same class
         System.out.println("Starting electric motor from battery in electric car");
+    }
+
+    public void chargeBattery(){
+        System.out.println("Hey charging battery");
     }
 }
 // super == parent
