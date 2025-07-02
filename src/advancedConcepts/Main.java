@@ -6,6 +6,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        Car c = new Car(4, "Car");
+
+
         /*
         Calculator<String, String> strCalculator = new Calculator<>("A", "B");
         strCalculator.print("A", "B");
