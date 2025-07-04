@@ -16,12 +16,6 @@ public class Flutter {
     }
 
     public UIFactory uiFactory(){
-        if(platform.equals(SupportedPlatforms.IOS)){
-            return new IosFactory();
-        } else if(platform.equals(SupportedPlatforms.ANDROID)) {
-            return new AndroidFactory();
-        } else {
-            return new WindowsFactory();
-        }
+        return UIFactoryFactory.getUIFactory(platform);
     }
 }
