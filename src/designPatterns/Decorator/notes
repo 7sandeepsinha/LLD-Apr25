@@ -1,0 +1,25 @@
+<HTML>
+    <HEAD>
+        <TITLE> Something title </TITLE>
+    </HEAD>
+    <BODY>
+        <DIV>
+            <P> Hello World </P>
+        </DIV>
+    </BODY>
+</HTML>
+
+
+<HTML>
+</HTML>
+
+
+
+1 Cone -> is an ice cream
+1 cone, 1 syrup, 1 scoop, 1 syrup -> is an ice cream
+
+
+@Service
+class UserService{
+
+}
