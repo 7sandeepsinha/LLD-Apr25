@@ -38,6 +38,11 @@ public class Board {
         }
     }
 
+    public Board clone(){
+        //TODO : add the logic for deep copy
+        return null;
+    }
+
     public int getDimension() {
         return dimension;
     }
