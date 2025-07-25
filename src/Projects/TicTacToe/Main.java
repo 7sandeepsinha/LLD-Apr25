@@ -1,10 +1,10 @@
 package Projects.TicTacToe;
 
 import Projects.TicTacToe.controller.GameController;
-import Projects.TicTacToe.model.Board;
-import Projects.TicTacToe.model.Bot;
-import Projects.TicTacToe.model.Player;
+import Projects.TicTacToe.exception.GameDrawException;
+import Projects.TicTacToe.model.*;
 import Projects.TicTacToe.model.constants.BotDifficultyLevel;
+import Projects.TicTacToe.model.constants.GameStatus;
 import Projects.TicTacToe.model.constants.PlayerType;
 
 import java.util.*;
@@ -42,9 +42,34 @@ public class Main {
             players.add(newPlayer);
         }
         Collections.shuffle(players); // shuffling the order of players
-
         Board board = new Board(dimension);
         // adding players and board to build game
-        gameController.createGame(board, players);
+        Game game = gameController.createGame(board, players);
+        int playerIndex = -1;
+        while(game.getGameStatus().equals(GameStatus.IN_PROGRESS)){
+            System.out.println("Current Board Status");
+            gameController.displayBoard(game);
+            playerIndex++;
+            playerIndex = playerIndex % players.size();
+            System.out.println("Do you want to undo the game ? " + players.get(playerIndex).getName());
+            //TODO: write the undo method call
+            Move move = gameController.executeMove(game, players.get(playerIndex));
+            game.getMoves().add(move);
+            game.getBoardStates().add(game.getBoard());
+            try {
+                 Player player = gameController.checkWinner(game, move);
+                if (player != null) {
+                    System.out.println("WINNER IS : " + player.getName());
+                    break;
+                }
+            } catch (GameDrawException exception){
+                System.out.println("Game is drawn");
+                break;
+            }
+        }
+        System.out.println("Final board state : ");
+        gameController.displayBoard(game);
+        System.out.println("Do you want to watch the replay ?");
+        gameController.playReplay(game);
     }
 }

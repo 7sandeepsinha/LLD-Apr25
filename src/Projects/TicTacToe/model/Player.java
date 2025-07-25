@@ -7,6 +7,7 @@ public class Player {
     private String name;
     private char symbol;
     private PlayerType playerType;
+    private boolean undoDone;
 
     public Player() {
     }
@@ -16,6 +17,7 @@ public class Player {
         this.name = name;
         this.symbol = symbol;
         this.playerType = playerType;
+        this.undoDone = false;
     }
 
     public int getId() {

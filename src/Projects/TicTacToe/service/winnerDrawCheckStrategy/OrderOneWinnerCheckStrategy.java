@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OrderOneWinnerCheckStrategy implements WinningCheckStrategy{
+    private static OrderOneWinnerCheckStrategy instance;
     private int dimension;
     private int eligibleMapsForWinning;
     private List<HashMap<Character, Integer>> rowMapList;
@@ -17,7 +18,7 @@ public class OrderOneWinnerCheckStrategy implements WinningCheckStrategy{
     private HashMap<Character, Integer> rightDiagonalMap;
     private HashMap<Character, Integer> cornerMap;
 
-    public OrderOneWinnerCheckStrategy(int dimension) {
+    private OrderOneWinnerCheckStrategy(int dimension) {
         this.dimension = dimension;
         this.eligibleMapsForWinning = ( 2 * dimension + 3);
         this.rowMapList = new ArrayList<>();
@@ -29,6 +30,13 @@ public class OrderOneWinnerCheckStrategy implements WinningCheckStrategy{
             rowMapList.add(new HashMap<>());  // N maps
             colMapList.add(new HashMap<>()); // N maps
         }
+    }
+
+    public static OrderOneWinnerCheckStrategy getInstance(int dimension) {
+        if(instance == null) {
+            instance = new OrderOneWinnerCheckStrategy(dimension);
+        }
+        return instance;
     }
 
     @Override
