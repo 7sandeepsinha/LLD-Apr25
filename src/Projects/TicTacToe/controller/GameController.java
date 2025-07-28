@@ -47,7 +47,7 @@ public class GameController {
 
     public Board undo(Game game, Player player){
         //1. 1 Player can do undo only 1 time
-        //2. Player can undo X number of moves in the game. X<=3. X is cumulative moves, not just player's individual move
+        //2. Player can undo X number of moves in the game. Condition -> X<=3. X is cumulative moves, not just player's individual move
         //3. We are storing list of moves and list of board states
         //4. Make the current board as boardStates.get(totalMoves-X);
         //5. Delete all moves from current till last X in moves list
