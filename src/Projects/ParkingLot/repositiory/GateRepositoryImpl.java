@@ -7,7 +7,7 @@ import Projects.ParkingLot.model.ParkingFloor;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GateRepositoryImpl implements GateRepository{
+public class GateRepositoryImpl implements GateRepository {
     private Map<Integer, Gate> gateMap;
     private static int idCounter = 1;
 
@@ -18,7 +18,7 @@ public class GateRepositoryImpl implements GateRepository{
     @Override
     public Gate get(int id) {
         Gate gate = gateMap.get(id);
-        if(gate == null) {
+        if (gate == null) {
             throw new ParkingLotNotFoundException("gate does not exist");
         }
         return gate;
@@ -31,5 +31,3 @@ public class GateRepositoryImpl implements GateRepository{
         System.out.println("gate has been added successfully");
     }
 }
-
-//break -> 10:26 PM
