@@ -1,0 +1,16 @@
+City
+Theatre
+Auditorium
+Seat
+Show
+Movie
+ShowSeat
+Payment
+User
+Ticket
+
+City -> Theatre : FK mapping
+Theatre -> Auditorium : FK mapping
+Auditorium -> Seat : FK mapping
+Show -> Auditorium : FK mapping
+Movie -> Show : FK mapping

@@ -2,6 +2,7 @@ package dev.sandeep.BookMyShowApr25.model;
 
 import dev.sandeep.BookMyShowApr25.model.constant.PaymentStatus;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -15,6 +16,7 @@ public class Payment extends BaseModel{
     @OneToOne
     private Ticket ticket;
     @OneToMany
+    @JoinColumn(name = "payment_id")
     private List<Transaction> transactions;
     private PaymentStatus paymentStatus;
 }

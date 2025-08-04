@@ -2,6 +2,7 @@ package dev.sandeep.BookMyShowApr25.model;
 
 import dev.sandeep.BookMyShowApr25.model.constant.ShowStatus;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -19,5 +20,6 @@ public class Show extends BaseModel{
     private Auditorium auditorium;
     private ShowStatus showStatus;
     @OneToMany
+    @JoinColumn(name = "show_id")
     private List<ShowSeat> showSeats;
 }
