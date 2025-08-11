@@ -16,6 +16,15 @@ public class Transaction extends BaseModel {
     private double amount;
     @ManyToOne
     private Group group;
+
+    public Transaction(User sender, User recipient, double amount) {
+        this.sender = sender;
+        this.recipient = recipient;
+        this.amount = amount;
+    }
+
+    public Transaction() {
+    }
 }
 
 /*

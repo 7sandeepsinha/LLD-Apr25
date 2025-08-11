@@ -6,6 +6,8 @@ import dev.sandeep.SplitwiseApr25.dto.UserExpenseReqDTO;
 import dev.sandeep.SplitwiseApr25.exception.GroupDoesNotExistException;
 import dev.sandeep.SplitwiseApr25.model.*;
 import dev.sandeep.SplitwiseApr25.repository.GroupRepository;
+import dev.sandeep.SplitwiseApr25.service.strategy.GroupSettlementStrategy;
+import dev.sandeep.SplitwiseApr25.service.strategy.MinimumTransactionSettlementStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class GroupService {
     private UserExpenseService userExpenseService;
     @Autowired
     private ExpenseService expenseService;
+    @Autowired
+    private TransactionService transactionService;
 
     public Group findGroupById(int id) {
         return groupRepository.findById(id).orElseThrow(
@@ -79,5 +83,17 @@ public class GroupService {
         groupRepository.save(group);
 
         return expense;
+    }
+
+    public List<Transaction> settleUp(int groupId){
+        Group group = findGroupById(groupId);
+        //TODO : replace with factory static method
+        GroupSettlementStrategy settlementStrategy = new MinimumTransactionSettlementStrategy();
+        List<Transaction> transactions = settlementStrategy.settleUp(group);
+        for(Transaction transaction : transactions){
+            transaction.setGroup(group);
+            transactionService.save(transaction);
+        }
+        return transactions;
     }
 }
